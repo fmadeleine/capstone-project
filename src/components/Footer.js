@@ -1,8 +1,8 @@
 function Footer() {
     return (
         <footer>
-            <div>
-                <img src="images/logo-secondary.png" alt="little lemon logo"></img>
+            <div className="footer-content">
+                <img src="images/logo-secondary.png" width={140} alt="little lemon logo"></img>
                 <div>
                     <h4>Navigation</h4>
                     <ul>

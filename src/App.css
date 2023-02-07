@@ -1,38 +1,243 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #495E57;
+  --accent-color: #F4CE14;
+  --secondary-color: #EE9972;
+  --secondary-color-light: #FBDABB;
+  --lightgrey: #EDEFEE;
+  --darkgrey: #333333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  color: var(--darkgrey);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-family: 'Markazi Text', serif;
+  font-size: 64px;
+  font-weight: 500;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h3 {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+}
+
+h4 {
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+p, li, span {
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--darkgrey);
+}
+
+a[role=button] {
+  padding: 15px 5px;
+  border-radius: 16px;
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-outlined {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outlined:hover {
+  background-color: var(--lightgrey);
+}
+
+.btn-filled {
+  background-color: var(--primary-color);
+  color: var(--lightgrey)
+}
+
+.btn-filled:hover {
+  background-color: #2F3936;
+}
+
+
+/*Nav*/
+nav {
+  background-color: var(--lightgrey);
+  overflow-x: hidden;
+}
+
+.nav-content {
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-content img {
+  padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.nav-links ul {
+  display: flex;
+}
+
+.nav-links ul li {
+  padding: 15px;
+  font-family: 'Karla', sans-serif;
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  .nav-content {
+    padding: 0 1rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+
+
+/*Main Booking Page 1*/
+
+main {
+  max-width: 1140px;
+  margin: auto;
+  text-align: center;
+  padding: 3rem 2rem 8rem 2rem;
+  overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  main {
+    padding: 1rem 1rem 6rem 1rem;
   }
+}
+
+.bookings-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.bookings-segment {
+  display: grid;
+  border: 1px solid grey;
+  border-radius: 16px;
+  margin: 10px;
+  padding: 30px;
+}
+
+.guests, .date, .time {
+  grid-column: 1 / span 12;
+}
+
+.occasion {
+ grid-column: 1 / span 7;
+}
+
+.seating {
+  grid-column: 8 / span 5;
+}
+
+.bookings-nav {
+  border: none;
+  grid-column: 8 / span 5;
+  padding: 0;
+}
+
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group a {
+  width: 45.5%;
+}
+
+
+@media (max-width: 767px) {
+  .occasion, .seating, .bookings-nav {
+    grid-column: 1 / span 12;
+  }
+
+  .bookings-segment {
+    padding: 20px;
+  }
+
+  .bookings-nav {
+    padding: 0;
+  }
+}
+
+
+
+.timeslots {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-top: 20px;
+}
+
+.timeslots span {
+  padding: 8px;
+  border-radius: 16px;
+  background-color: var(--lightgrey);
+  color: var(--primary-color);
+  margin: 5px;
+  text-align: center;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+@media (max-width: 767px) {
+  .timeslots {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+}
+
+
+
+
+
+
+
+
+/*Footer*/
+footer {
+  background-color: var(--primary-color);
+  color: var(--lightgrey);
+  padding: 4rem 2rem;
+  overflow-x: hidden;
+}
+
+.footer-content {
+  max-width: 1140px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-content a {
+  color: var(--lightgrey);
 }
