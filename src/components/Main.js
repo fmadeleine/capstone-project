@@ -1,62 +1,18 @@
-
+import { Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import Bookings from '../pages/Booking';
 
 
 function Main() {
     return (
         <main>
-            <h1>Book a table</h1>
-            <div className="bookings-container">
-                <div className="bookings-segment guests">
-                    <div className="content">
-                        <h3>Number of Guests</h3>
-                    </div>
-                </div>
-                <div className="bookings-segment date">
-                    <div className="content">
-                        <h3>Date</h3>
-                        <h4>February 2023</h4>
-                    </div>
-                </div>
-                <div className="bookings-segment time">
-                    <div className="content">
-                        <h3>Time</h3>
-                        <div className="timeslots">
-                            <span>16:00</span>
-                            <span>16:30</span>
-                            <span>17:00</span>
-                            <span>17:30</span>
-                            <span>18:00</span>
-                            <span>18:30</span>
-                            <span>19:00</span>
-                            <span>19:30</span>
-                            <span>20:00</span>
-                            <span>20:30</span>
-                            <span>21:00</span>
-                            <span>21:30</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="bookings-segment occasion">
-                    <div className="content">
-                        <h3>Occasion</h3>
-                        <p>Are you booking for a special occasion?</p>
-                    </div>
-                </div>
-                <div className="bookings-segment seating">
-                    <div className="content">
-                        <h3>Seating Options</h3>
-                        <p>Please select a seating area</p>
-                    </div>
-                </div>
-                <div className="bookings-segment bookings-nav">
-                    <div className="button-group">
-                        <a href="" role="button" className="btn-outlined">Back</a>
-                        <a href="" role="button" className="btn-filled">Continue</a>
-                    </div>
-                </div>
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/booking" element={<Bookings/>}/>
+            </Routes>
         </main>
-    );
-  }
+    )
+}
 
-  export default Main;
+
+export default Main;
