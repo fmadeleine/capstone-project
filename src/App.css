@@ -73,20 +73,22 @@ a {
   color: var(--darkgrey);
 }
 
-a[role=button], div[role=button] {
+[role=button] {
   padding: 15px 5px;
   border-radius: 16px;
   font-family: 'Karla', sans-serif;
   font-size: 18px;
   font-weight: 500;
   transition: all 0.2s ease;
-  text-align: center;;
+  text-align: center;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-secondary-outlined {
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
-  max-width: 230px;
+  max-width: 260px;
 }
 
 .btn-secondary-outlined:hover {
@@ -96,7 +98,7 @@ a[role=button], div[role=button] {
 .btn-secondary-filled {
   background-color: var(--primary-color);
   color: var(--lightgrey);
-  max-width: 230px;
+  max-width: 260px;
 }
 
 .btn-secondary-filled:hover {
@@ -105,7 +107,7 @@ a[role=button], div[role=button] {
 
 .btn-primary {
   background-color: var(--accent-color);
-  max-width: 230px;
+  max-width: 260px;
 }
 
 .btn-primary:hover {
@@ -362,19 +364,10 @@ main {
 
 .bookings-nav {
   border: none;
-  grid-column: 8 / span 5;
+  grid-column: 10 / span 3;
   padding: 0;
 }
 
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-group a {
-  width: 45.5%;
-}
 
 
 @media (max-width: 767px) {
@@ -400,7 +393,7 @@ main {
   margin-top: 20px;
 }
 
-.timeslots span {
+.timeslots span, .seating-options span {
   padding: 8px;
   border-radius: 16px;
   background-color: var(--lightgrey);
@@ -410,7 +403,33 @@ main {
   font-family: 'Karla', sans-serif;
   font-size: 16px;
   font-weight: 800;
+  cursor: pointer;
 }
+
+.seating-options {
+  max-width: 170px;
+}
+
+.seating-options span {
+  margin: 0 0 10px 0;
+  
+}
+
+.card-input {
+  display: block;
+}
+
+.card-input-element:checked + .card-input {
+  background-color: var(--primary-color);
+  color: var(--lightgrey);
+}
+
+.card-input-element {
+  display: none;
+}
+
+
+
 
 @media (max-width: 767px) {
   .timeslots {
