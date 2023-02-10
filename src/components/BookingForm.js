@@ -1,15 +1,17 @@
 
-import { useState } from "react"
+import { useState, useReducer } from "react"
 
 
 function BookingForm(props) {
+console.log(props)
 
-
+    
     const [guests, setGuests] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [occasion, setOccasion] = useState("");
     const [seating, setSeating] = useState("");
     const [time, setTime] = useState("");
+
    
     
     const availableSeating = [
@@ -47,17 +49,18 @@ function BookingForm(props) {
                 </div>
                 <div className="bookings-segment date">
                     <label htmlFor="date"><h3>Date</h3></label>
-                    <input type="date" name="date" id="date" value={date} onChange={(e) => { setDate(e.target.value)}}></input>
+                    <input type="date" name="date" id="date" value={date} onChange={(e) => {props.changeDate(e); setDate(e.currentTarget.value); console.log(e.currentTarget.value)}}></input>
                 </div>
                 <div className="bookings-segment time">
                     <h3>Time</h3>
                     <div className="timeslots">
-                    {props.availableTimes.map((option) => (
-                        <label htmlFor={option.id} key={option.id} onChange={(e) => { setTime(e.target.value)}}>
-                            <input type="radio" name="time" className="card-input-element" id={option.id} value={time}></input>
-                            <span className="card-input" >{option.value}</span>
+                     {props.availableTimes.map((option) => (
+                        <label htmlFor={option} key={option} onChange={(e) => { setTime(e.target.value)}}>
+                            <input type="radio" name="time" className="card-input-element" id={option} value={time}></input>
+                            <span className="card-input" >{option}</span>
                         </label>
-                    ))}</div> 
+                    ))} 
+                    </div> 
                 </div>
                 <div className="bookings-segment occasion">
                     <label htmlFor="occasion">
