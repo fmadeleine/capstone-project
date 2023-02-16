@@ -8,9 +8,8 @@ import ConfirmedBooking from './ConfirmedBooking';
 
 function Main() {
 
-
-    
     const updateTimes = (state, action) => {
+        console.log(state)
         if (action.type === 'select_new_date') return ({availableTimes: fetchAPI(new Date(action.date))});
         return state;
     }

@@ -53,17 +53,18 @@ function BookingForm(props) {
                 </div>
                 <div className="bookings-segment date">
                     <label htmlFor="date"><h3>Date</h3></label>
-                    <input type="date" name="date" id="date" value={date} onChange={(e) => {props.changeDate(e); setDate(e.currentTarget.value)}}></input>
+                    <input type="date" name="date" data-testid="select-option" id="date" value={date} onChange={(e) => {props.changeDate(e); setDate(e.currentTarget.value); console.log(e.currentTarget.value)}}></input>
                 </div>
                 <div className="bookings-segment time">
                     <h3>Time</h3>
                     <div className="timeslots">
-                     {props.availableTimes.map((option) => (
+                     {props.availableTimes.map((option) => {
+                     return(
                         <label htmlFor={option} key={option} >
-                            <input type="radio" name="time" className="card-input-element" id={option} value={time} onChange={(e) => { setTime(option); console.log(option)}}></input>
+                            <input type="radio" name="time" className="card-input-element" id={option} value={time} onChange={(e) => { setTime(option)}}></input>
                             <span className="card-input" >{option}</span>
                         </label>
-                    ))} 
+                    )})} 
                     </div> 
                 </div>
                 <div className="bookings-segment occasion">
