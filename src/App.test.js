@@ -49,7 +49,7 @@ test('updates times for selected date', () => {
 
 
 
-describe('Form Validation', () => {
+describe('Form Validation and Submission', () => {
   test('guest number of 12 doesnt allow for form submission', () => {
 
   render(<BookingForm availableTimes={testTimes}/>)
@@ -57,10 +57,22 @@ describe('Form Validation', () => {
     const input = screen.getByLabelText("Number of Guests");
     const button = screen.getByRole("button");
 
-    
-
-    userEvent.type(input, "12");
-    console.log(button)
+    fireEvent.input(input, "12");
     expect(button).toBeDisabled();
   })
+
+
+  test('guest number of 4 allows for form submission when time and seating selected', async () => {
+    await render(<BookingForm availableTimes={testTimes}/>)
+
+      const input = screen.getByLabelText("Number of Guests");
+      const button = screen.getByRole("button");
+      const time = screen.getByRole("radio", {name: "16:00"});
+      const seating = screen.getByRole("radio", {name: "Indoor"});
+
+      fireEvent.input(input, "4");
+      fireEvent.click(time);
+      fireEvent.click(seating);
+      expect(button).toBeEnabled();
+    })
 })

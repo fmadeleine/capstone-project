@@ -96,8 +96,8 @@ function BookingForm(props) {
                         <div className="timeslots">
                         {props.availableTimes.map((option) => {
                         return(
-                            <label htmlFor={option} key={option} >
-                                <input type="radio" name="time" className="card-input-element" id={option} value={option} onChange={formik.handleChange}></input>
+                            <label htmlFor={option} key={option}>
+                                <input type="radio" name="time" className="card-input-element" data-testid="time" id={option} value={option} onChange={formik.handleChange}></input>
                                 <span className="card-input" >{option}</span>
                             </label>
                         )})} 
@@ -121,7 +121,7 @@ function BookingForm(props) {
                         <div className="seating-options">
                         {availableSeating.map((option) => (
                             <label htmlFor={option.id} key={option.id}>
-                                <input type="radio" name="seating" className="card-input-element" id={option.id} value={option.value} onChange={formik.handleChange}></input>
+                                <input type="radio" name="seating" className="card-input-element" data-testid="seating" id={option.id} value={option.value} onChange={formik.handleChange}></input>
                                 <span className="card-input">{option.value}</span>
                             </label>
                         ))} {formik.touched.seating && formik.errors.seating ? (

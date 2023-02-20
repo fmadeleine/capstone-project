@@ -117,7 +117,7 @@ a {
 
 input[type="submit" i]:disabled {
   opacity: 0.5;
-  cursor:default;
+  cursor: default;
 }
 
 
