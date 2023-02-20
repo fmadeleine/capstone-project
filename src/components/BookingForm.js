@@ -1,7 +1,7 @@
 
 import { useState, useReducer } from "react"
 import { Link } from "react-router-dom";
-import { Formik, Form, Field, useFormik } from 'formik';
+import { Formik, Form, Field, useFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 
@@ -45,6 +45,13 @@ function BookingForm(props) {
     //     setSeating("");
     // }
 
+
+
+    const styleError = {
+        borderColor: "red",
+        borderStyle: "solid",
+    }
+
     const formik = useFormik({
         initialValues: {
             guests: 1,
@@ -81,13 +88,13 @@ function BookingForm(props) {
                 <div className="bookings-container">
                     <div className="bookings-segment guests">
                         <label htmlFor="guests"><h3>Number of Guests</h3></label>
-                        <input type="number" placeholder="1" id="guests" name="guests" {...formik.getFieldProps('guests')}></input>
+                        <input type="number" placeholder="1" id="guests" name="guests" {...formik.getFieldProps('guests')} style={formik.touched.guests && formik.errors.guests ? styleError : null}></input>
                         {formik.touched.guests && formik.errors.guests ? (
                             <div>{formik.errors.guests}</div>) : null}
                     </div>
                     <div className="bookings-segment date">
                         <label htmlFor="date"><h3>Date</h3></label>
-                        <input type="date" name="date" data-testid="select-option" id="date" value={formik.values.date} onChange={(e) => {props.changeDate(e); formik.handleChange(e)}}></input>
+                        <input type="date" name="date" data-testid="select-option" id="date" value={formik.values.date} onChange={(e) => {props.changeDate(e); formik.handleChange(e)}} style={formik.errors.date ? styleError : null}></input>
                         {formik.errors.date ? (
                             <div>{formik.errors.date}</div>) : null}
                     </div>
@@ -121,7 +128,7 @@ function BookingForm(props) {
                         <div className="seating-options">
                         {availableSeating.map((option) => (
                             <label htmlFor={option.id} key={option.id}>
-                                <input type="radio" name="seating" className="card-input-element" data-testid="seating" id={option.id} value={option.value} onChange={formik.handleChange}></input>
+                                <input type="radio" name="seating" className="card-input-element" data-testid="seating" id={option.id} value={option.value} onChange={formik.handleChange} style={formik.touched.seating && formik.errors.seating ? styleError : null}></input>
                                 <span className="card-input">{option.value}</span>
                             </label>
                         ))} {formik.touched.seating && formik.errors.seating ? (
@@ -129,7 +136,7 @@ function BookingForm(props) {
                         
                     </div>
                     <div className="bookings-segment bookings-nav">
-                    <input type="submit" role="button" className="btn-secondary-filled" value="Book table" disabled={!(formik.isValid && formik.dirty)}></input>
+                    <input type="submit" role="button" aria-label="Click" className="btn-secondary-filled" value="Book table" disabled={!(formik.isValid && formik.dirty)}></input>
                     </div>
                 </div>
             </form>
