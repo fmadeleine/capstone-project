@@ -7,11 +7,6 @@ import * as Yup from 'yup';
 
 function BookingForm(props) {
 
-    // const [guests, setGuests] = useState("1");
-    // const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-    // const [occasion, setOccasion] = useState("No special occasion");
-    // const [seating, setSeating] = useState("");
-    // const [time, setTime] = useState("");
 
     const availableSeating = [
         {
@@ -24,31 +19,9 @@ function BookingForm(props) {
         }
     ]
 
-    // const handleSubmit = (e) => {
-    //     const formData = {
-    //         guests: guests,
-    //         date: date,
-    //         occasion: occasion,
-    //         seating: seating,
-    //         time: time
-    //     };
-    //     e.preventDefault();
-    //     props.submitForm(formData);
-    //     clearForm()
-    // }
-
-    // const clearForm = () => {
-    //     setGuests("1");
-    //     setDate(new Date().toISOString().split('T')[0]);
-    //     setTime("");
-    //     setOccasion("No special occasion");
-    //     setSeating("");
-    // }
-
-
 
     const styleError = {
-        borderColor: "red",
+        borderColor: "#EE9972",
         borderStyle: "solid",
     }
 
@@ -58,13 +31,13 @@ function BookingForm(props) {
             date: new Date().toISOString().split('T')[0],
             time: '',
             occasion: 'No special occasion',
-            seating: ''
+            seating: '',
+            fname: '',
+            lname: '',
+            email: '',
         },
         onSubmit: values => {
             props.submitForm(values);
-        },
-        validate: (values) => {
-            console.log(values)
         },
         validationSchema: Yup.object({
             guests: Yup.number()
@@ -78,6 +51,9 @@ function BookingForm(props) {
                 .required('Please select a time.'),
             seating: Yup.string()
                 .required('Please select a seating area.'),
+            email: Yup.string()
+                .email('Please enter a valid email address.')
+                .required('Please enter a valid email address.'),
         })
     })
 
@@ -90,13 +66,13 @@ function BookingForm(props) {
                         <label htmlFor="guests"><h3>Number of Guests</h3></label>
                         <input type="number" placeholder="1" id="guests" name="guests" {...formik.getFieldProps('guests')} style={formik.touched.guests && formik.errors.guests ? styleError : null}></input>
                         {formik.touched.guests && formik.errors.guests ? (
-                            <div>{formik.errors.guests}</div>) : null}
+                            <div><p className="highlight error">{formik.errors.guests}</p></div>) : null}
                     </div>
                     <div className="bookings-segment date">
                         <label htmlFor="date"><h3>Date</h3></label>
                         <input type="date" name="date" data-testid="select-option" id="date" value={formik.values.date} onChange={(e) => {props.changeDate(e); formik.handleChange(e)}} style={formik.errors.date ? styleError : null}></input>
                         {formik.errors.date ? (
-                            <div>{formik.errors.date}</div>) : null}
+                            <div><p className="highlight error">{formik.errors.date}</p></div>) : null}
                     </div>
                     <div className="bookings-segment time">
                         <h3>Time</h3>
@@ -107,20 +83,22 @@ function BookingForm(props) {
                                 <input type="radio" name="time" className="card-input-element" data-testid="time" id={option} value={option} onChange={formik.handleChange}></input>
                                 <span className="card-input" >{option}</span>
                             </label>
-                        )})} 
-                        </div> 
+                        )})}
+                        </div>
                     </div>
                     <div className="bookings-segment occasion">
-                        <label htmlFor="occasion">
-                            <h3>Occasion</h3>
-                            <p>Are you booking for a special occasion?</p>
-                        </label>
-                        <select id="occasion" name="occasion" required {...formik.getFieldProps('occasion')}>
-                            <option>No special occasion</option>
-                            <option>Birthday</option>
-                            <option>Anniversary</option>
-                            <option>Engagement</option>
-                        </select>
+                        <div className="occasion-details">
+                            <label htmlFor="occasion">
+                                <h3>Occasion</h3>
+                                <p>Are you booking for a special occasion?</p>
+                            </label>
+                            <select id="occasion" name="occasion" required {...formik.getFieldProps('occasion')}>
+                                <option>No special occasion</option>
+                                <option>Birthday</option>
+                                <option>Anniversary</option>
+                                <option>Engagement</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="bookings-segment seating">
                         <h3>Seating Options</h3>
@@ -131,9 +109,26 @@ function BookingForm(props) {
                                 <input type="radio" name="seating" className="card-input-element" data-testid="seating" id={option.id} value={option.value} onChange={formik.handleChange} style={formik.touched.seating && formik.errors.seating ? styleError : null}></input>
                                 <span className="card-input">{option.value}</span>
                             </label>
-                        ))} {formik.touched.seating && formik.errors.seating ? (
-                            <div>{formik.errors.seating}</div>) : null}</div>
-                        
+                        ))}</div>
+                    </div>
+                    <div className="bookings-segment contact-details">
+                        <h3>Contact Details</h3>
+                        <div className="contact-detail">
+                            <label htmlFor="fname">First Name
+                                <input type="text" name="fname" id="fname" {...formik.getFieldProps('fname')}></input>
+                            </label>
+                        </div>
+                        <div className="contact-detail">
+                            <label htmlFor="lname">Last Name
+                                <input type="text" name="lname" id="lname" {...formik.getFieldProps('lname')}></input>
+                            </label>
+                        </div>
+                        <div className="contact-detail">
+                            <label htmlFor="email">Email Address *
+                                <input type="email" name="email" id="email" {...formik.getFieldProps('email')} style={formik.touched.email && formik.errors.email ? styleError : null}></input>
+                            </label>
+                        {formik.touched.email && formik.errors.email ? (
+                            <div><p className="highlight error">{formik.errors.email}</p></div>) : null}</div>
                     </div>
                     <div className="bookings-segment bookings-nav">
                     <input type="submit" role="button" aria-label="Click" className="btn-secondary-filled" value="Book table" disabled={!(formik.isValid && formik.dirty)}></input>

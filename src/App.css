@@ -11,6 +11,7 @@ body {
   color: var(--darkgrey);
 }
 
+
 h1 {
   font-family: 'Markazi Text', serif;
   font-size: 64px;
@@ -52,7 +53,7 @@ p, li, span {
   text-align: left;
 }
 
-p.lead, span.lead {
+p.lead, span.lead, a.lead {
   font-size: 18px;
   font-weight: 500;
 }
@@ -72,6 +73,21 @@ a {
   text-decoration: none;
   color: var(--darkgrey);
 }
+
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 55px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+}
+
+
+
 
 [role=button] {
   padding: 15px 5px;
@@ -152,9 +168,53 @@ nav {
   font-size: 18px;
 }
 
+.hamburger {
+  display: none;
+  z-index: 10;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+
 @media (max-width: 767px) {
   .nav-content {
     padding: 0 1rem;
+  }
+
+  .hamburger-menu {
+    display: block;
+    cursor: pointer;
+    z-index: 10;
+    right: 0;
+    padding-right: 1rem;
+  }
+
+  .hamburger {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+    flex-direction: column;
+  }
+
+  .burger {
+    width: 2rem;
+    height: 0.2rem;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    transform-origin: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger li {
+    padding: 0.5rem 0;
+  }
+
+  .hamburger li a {
+    color: var(--lightgrey);
   }
 }
 
@@ -164,6 +224,7 @@ main {
   margin: auto;
   text-align: center;
   overflow-x: hidden;
+  min-height: calc(100vh - 330px - 80px);
 }
 
 .content {
@@ -173,8 +234,8 @@ main {
 }
 
 @media (max-width: 767px) {
-  main {
-    padding: 1rem 1rem 6rem 1rem;
+  .content {
+    padding: 4rem 1rem;
   }
 }
 
@@ -213,6 +274,24 @@ main {
   height: 500px;
   object-fit: cover;
   border-radius: 16px;
+}
+
+@media (max-width: 767px) {
+  .hero-section .content {
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .hero-col-1 {
+    order: 2;
+  }
+
+  .hero-col-2 img {
+    position: relative;
+    width: 120vw;
+    left: -20vw;
+    height: 40vh;
+  }
 }
 
 
@@ -310,6 +389,13 @@ main {
 }
 
 
+@media (max-width: 767px) {
+  .testimonial-wrapper {
+    grid-template-columns: repeat(1, 1fr)
+  }
+}
+
+
 /*About Section*/
 .about-section {
   display: flex;
@@ -342,6 +428,20 @@ main {
 }
 
 
+@media (max-width: 767px) {
+  .about-section {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .about-col-2 img {
+    position: static;
+    margin-bottom: 2rem;
+    width: 90vw;
+  }
+}
+
+
 
 /*Booking Page*/
 
@@ -356,9 +456,10 @@ main {
   border-radius: 16px;
   margin: 10px;
   padding: 30px;
+  text-align: left;
 }
 
-.guests, .date, .time {
+.guests, .date, .time, .contact-details {
   grid-column: 1 / span 12;
 }
 
@@ -366,15 +467,64 @@ main {
  grid-column: 1 / span 7;
 }
 
+.occasion-details select {
+  width: 60%;
+}
+
 .seating {
   grid-column: 8 / span 5;
 }
+
 
 .bookings-nav {
   border: none;
   grid-column: 10 / span 3;
   padding: 0;
 }
+
+label {
+  margin-bottom: 1rem;
+  font-family: 'Karla', sans-serif;
+}
+
+
+
+input, select {
+  position: relative;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 1rem;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: transparent;
+  color: transparent;
+}
+
+input[type="email"], input[type="text"] {
+  width: 96%;
+  margin-top: 0.5rem;
+}
+
+
+.contact-detail {
+  margin-top: 1.5rem;
+}
+
+.error {
+  color: var(--secondary-color);
+}
+
+
 
 
 
@@ -389,6 +539,14 @@ main {
 
   .bookings-nav {
     padding: 0;
+  }
+
+  .occasion-details select {
+    width: 100%;
+  }
+
+  input[type="email"], input[type="text"] {
+    width: 88%;
   }
 }
 
@@ -448,7 +606,10 @@ main {
 
 
 
-
+/*Booking Confirmation*/
+.confirmation-section p {
+  text-align: center;
+}
 
 
 
@@ -470,4 +631,19 @@ footer {
 
 .footer-content a {
   color: var(--lightgrey);
+}
+
+@media (max-width: 767px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-content img {
+    margin: auto;
+  }
+
+  .footer-content > div {
+    margin-bottom: 2rem;
+  }
+
 }
