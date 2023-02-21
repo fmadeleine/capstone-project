@@ -24,10 +24,7 @@ const NavStyle = styled.div`
             ul li a {
                 color: #333333;
             }
-        },
-        
-
-        `
+        },`
 
 
 function Nav() {
